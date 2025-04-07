@@ -1,0 +1,55 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 34px;
+    width: 300px;
+    height: 100px;
+    border: 1px,solid,black;
+    border-radius: 40px;
+    background-color: green;
+}
+input{
+    margin-bottom: 8px;
+    width: 250px;
+}
+
+.btn{
+    width: 150px;
+    background-color: white;
+    border: 1px,solid,black;
+    border-radius: 20px;
+    background-color: yellow;
+}
+
+.btn:hover{
+    background-color: red;
+    width: 160px;
+    height: 20px;
+}
+
+.del{
+    background-color: red;
+    border:1px,solid,black;
+    border-radius: 10px;
+    height: 30px;
+}
+
+li{
+    list-style: none;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border: 2px,solid,black;
+    border-radius: 30px;
+    gap: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.del:hover{
+    height: 33px;
+}
