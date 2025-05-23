@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import style  from './Phone.module.css'
+import style from './Phone.module.css';
 
 export class Phone extends Component {
   state = {
@@ -9,6 +9,19 @@ export class Phone extends Component {
     number: '',
     filter: ''
   };
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('contacts');
+    if (savedContacts) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -23,8 +36,10 @@ export class Phone extends Component {
       number
     };
 
-    const isDuplicate = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
-    
+    const isDuplicate = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
     if (isDuplicate) {
       alert(`${name} вже є в списку контактів!`);
       return;
@@ -45,7 +60,9 @@ export class Phone extends Component {
 
   getFilteredContacts = () => {
     const { contacts, filter } = this.state;
-    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
   };
 
   render() {
@@ -91,7 +108,13 @@ export class Phone extends Component {
         <ul className={style.list}>
           {filteredContacts.map(({ id, name, number }) => (
             <li key={id}>
-              {name}: {number} <button className={style.del} onClick={() => this.handleDelete(id)}>Видалити</button>
+              {name}: {number}{' '}
+              <button
+                className={style.del}
+                onClick={() => this.handleDelete(id)}
+              >
+                Видалити
+              </button>
             </li>
           ))}
         </ul>
